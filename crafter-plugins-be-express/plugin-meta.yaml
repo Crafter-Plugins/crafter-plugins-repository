@@ -1,0 +1,48 @@
+apiVersion: plugins/v1
+kind: SystemComponent
+metadata:
+  name: express-backend
+  description: A Express backend
+  author: Sneha Trivedi
+  labels:
+    - backend
+    - express
+    - server_side
+  icon_toolbar_filename: ./toolbar-icon.png
+  icon_node_filename: ./node-icon.png #path to node icon
+spec:  
+  properties:
+    - name: backend_name
+      description: Name of this backend.
+      type: string
+      default: null
+    - name: use_ts
+      description: Whether to use typescript or not.
+      type: boolean
+      default: null
+  environment:
+    - name: port
+      description: port number
+      type: integer
+      default: 4000
+  use_case:
+    cases:
+      - base
+      - with_ts
+    case_matchers:
+      - condition: "properties.use_ts == true"
+        cases:
+          - with_ts
+  validations:
+    max_nodes_in_diagram:
+      max_nodes: 2
+      on_violation: warning
+    connectable_to:
+      - has_tags:
+          - frontend
+        on_violation: error
+  file_injection_policies:
+    - "*.env": null
+      type: environment
+      inject_at:
+        - container_creation
