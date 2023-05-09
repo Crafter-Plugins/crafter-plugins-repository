@@ -1,0 +1,13 @@
+apiVersion: plugins/v1
+kind: DeploymentStack
+metadata:
+  name: DockerCompose
+  author: Souris Ash
+  labels:
+    - devops
+    - deployment_stack
+    - docker
+  description: |
+    Generates a docker compose file for the system you designed. Provides a pretty basic docker compose file.
+spec:
+  # ** nothing here, cricketss **
