@@ -1,0 +1,71 @@
+apiVersion: plugins/v1
+kind: SystemComponent
+metadata:
+  name: react-frontend
+  description: A ReactJS frontend.
+  author: Souris Ash
+  github_url: https://github.com/crafter-plugins/react-frontend
+  labels:
+    - frontend
+    - react
+    - client_side
+  icon_toolbar_filename: ./toolbar_icon.png
+  icon_node_filename: ./node_icon.png
+spec:
+  properties:
+    - name: frontend_name
+      description: Name of this frontend.
+      type: string
+      default: null
+
+    - name: use_ts
+      description: Whether to use typescript or not.
+      type: boolean
+      default: false
+
+    - name: use_tailwind
+      description: Whether to use tailwind or not
+      type: boolean
+      default: false
+
+    - name: use_bootstrap
+      description: Whether to use use bootstrap or not.
+      type: boolean
+      default: false
+  environment:
+    - name: port
+      description: port number
+      type: integer
+      default: 4000
+  use_case:
+    cases:
+      - base
+      - with_ts
+      - with_tailwind
+      - with_bootstrap
+    case_matchers:
+      - condition: "properties.use_tailwind == true"
+        cases:
+          - with_tailwind
+      - condition: "properties.use_ts == true"
+        cases:
+          - with_ts
+      - condition: "properties.use_bootstrap == true"
+        cases:
+          - with_bootstrap
+
+  validations:
+    - max_nodes: 3
+      on_violation: warning
+
+    - connectable_to:
+        - has_tags:
+          - backend
+        - plugin_id: 1
+      on_violation: error
+
+  file_injection_policies:
+    - "*.env":
+        # injections can happen at: boilerplate_generation, image_creation, container_creation
+        inject_at:
+          - image_creation
