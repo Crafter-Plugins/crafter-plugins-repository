@@ -1,0 +1,14 @@
+apiVersion: plugins/v1
+kind: DeploymentStack
+metadata:
+  name: KubernetesManifest
+  author: Souris Ash
+  labels:
+    - devops
+    - deployment_stack
+    - kubernetes
+    - k8s
+  description: |
+    Generates kubernetes deployments for the system you designed.
+spec:
+  # ** nothing here, cricketss **

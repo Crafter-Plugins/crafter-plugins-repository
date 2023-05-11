@@ -1,0 +1,14 @@
+apiVersion: plugins/context/v1
+kind: GenerationPolicy
+metadata:
+  name: KubernetesGenerationPolicy
+spec:
+  useContext: true
+
+  repeatFileGeneration:
+    - forEach:
+        services:
+          as: service
+      useTemplate:
+        useCase: 'base'
+        templateFilePath: 'kubernetes-deployment.yaml.ejs'

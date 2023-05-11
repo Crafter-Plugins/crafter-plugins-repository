@@ -1,0 +1,45 @@
+<% 
+
+// var services = [
+//   {
+//     properties: {
+//       name: 'operator'
+//     },
+//     environment: {
+//       port: '3000'
+//     }
+//   },
+//   {
+//     properties: {
+//       name: 'db',
+//       image_name: 'postgres:1.0'
+//     },
+//     environment: {
+//       port: '5032'
+//     }
+//   }
+// ]
+
+// var blueprintName = 'hello_world'
+
+-%>
+---
+to: kubernetes-service.yaml
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: <%= blueprintName %>-service
+  namespace: <%= blueprintName %>
+  labels:
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
+spec:
+  ports:
+<% services.forEach(service => { -%>
+  - port: <%= service.environment.port %>
+    protocol: TCP
+<% }) -%>
+  selector:
+    io.crafter/blueprint-name: <%= blueprintName %>

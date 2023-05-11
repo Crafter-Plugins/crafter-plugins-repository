@@ -1,0 +1,58 @@
+<% 
+
+var services = [
+  {
+    properties: {
+      name: 'operator'
+    },
+    environment: {
+      port: '3000'
+    }
+  },
+  {
+    properties: {
+      name: 'db',
+      image_name: 'postgres:1.0'
+    },
+    environment: {
+      port: '5032'
+    }
+  }
+]
+
+var blueprintName = 'hello_world'
+
+var service = services[0]
+
+-%>
+
+---
+to: kubernetes-deployment-<%= service.properties.name %>.yaml
+---
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: <%= service.properties.name %>-deployment
+  namespace: <%= blueprintName %>
+  labels:
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.crafter/blueprint-name: <%= blueprintName %>
+  template:
+    metadata:
+      labels:
+        io.crafter/blueprint-name: <%= blueprintName %>
+    spec:
+      containers:
+        - name: <%= service.properties.name %>
+<% if (service.properties.image_name == undefined) service.properties.image_name = service.properties.name -%>
+          image: <%= service.properties.image_name %>
+          env:
+<% Object.entries(service.environment).forEach(([key, value]) => { -%>
+            - name: <%= key %>
+              value: <%= value %>
+<% }) -%>
