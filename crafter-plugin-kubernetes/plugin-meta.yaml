@@ -9,6 +9,6 @@ metadata:
     - kubernetes
     - k8s
   description: |
-    Generates kubernetes deployments for the system you designed.
+    Generates kubernetes objects/resources for the system you designed.
 spec:
   # ** nothing here, cricketss **
