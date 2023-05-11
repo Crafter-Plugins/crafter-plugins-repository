@@ -1,33 +1,33 @@
 contextApiVersion: plugins/context/v1
 kind: ContextDefinition
 metadata:
-  name: DockerComposeContext
+  name: KubernetesManifestContext
 spec:
-  context_objects:
+  contextObjects:
     services:
       selector:
-        get_all_with_labels:
+        getAllWithLabels:
           labels:
             - backend
-          include_fields:
+          includeFields:
             - properties.name
             - properties.image_name
             - environment.port
             - metadata.labels
-          for_each:
-            context_objects:
-              depends_on:
+          forEach:
+            contextObjects:
+              dependsOn:
                 selector:
-                  get_neighbours_with_labels:
+                  getNeighboursWithLabels:
                     labels:
                       - backend
-                    include_fields:
+                    includeFields:
                       - properties.name
                       - metadata.labels
                 type: Array<object>
       type: Array<object>
 
-    blueprint_name:
+    blueprintName:
       selector:
-        get_blueprint_name:
+        getBlueprintName:
       type: string
