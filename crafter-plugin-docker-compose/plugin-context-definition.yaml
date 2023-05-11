@@ -1,4 +1,4 @@
-contextApiVersion: plugins/context/v1
+apiVersion: plugins/context/v1
 kind: ContextDefinition
 metadata:
   name: KubernetesManifestContext
