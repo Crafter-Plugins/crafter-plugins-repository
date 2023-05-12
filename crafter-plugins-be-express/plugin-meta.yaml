@@ -40,7 +40,13 @@ spec:
     connectable_to:
       - has_tags:
           - frontend
+          - backend
+          - database
+          - queue
+          - pubsub
         on_violation: error
+  
+  # TODO: not yet implemented in the backend:
   file_injection_policies:
     - "*.env": null
       type: environment
