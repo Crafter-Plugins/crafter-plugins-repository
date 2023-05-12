@@ -1,0 +1,23 @@
+---
+to: kubernetes-network-policy.yaml
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: <%= blueprintName %>-intra-namespace-network-policy
+  namespace: <%= blueprintName %>
+  labels:
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: <%= blueprintName %>
+              io.crafter/blueprint-name: <%= blueprintName %>
