@@ -11,4 +11,7 @@ metadata:
   description: |
     Generates kubernetes objects/resources for the system you designed.
 spec:
+  use_case:
+    cases:
+      - basic
   # ** nothing here, cricketss **
