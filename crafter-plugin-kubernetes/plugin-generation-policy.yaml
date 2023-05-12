@@ -10,5 +10,12 @@ spec:
         services:
           as: service
       useTemplate:
-        useCase: 'base'
+        useCase: 'basic'
         templateFilePath: 'kubernetes-deployment.yaml.ejs'
+    
+    - forEach: 
+        services:
+          as: service
+        useTemplate:
+          useCase: 'basic'
+          templateFilePath: 'kubernetes-service.yaml.ejs'

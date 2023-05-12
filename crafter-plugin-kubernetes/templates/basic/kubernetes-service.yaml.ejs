@@ -1,20 +1,18 @@
 ---
-to: kubernetes-service.yaml
+to: kubernetes-service-<%= service.properties.name %>.yaml
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: <%= blueprintName %>-service
+  name: <%= service.properties.name %>-service
   namespace: <%= blueprintName %>
   labels:
     io.crafter/blueprint-name: <%= blueprintName %>
     app.kubernetes.io/managed-by: crafter
 spec:
   ports:
-<% services.forEach(service => { -%>
   - port: <%= service.environment.port %>
     protocol: TCP
-<% }) -%>
   selector:
     io.crafter/blueprint-name: <%= blueprintName %>
