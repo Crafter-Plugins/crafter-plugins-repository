@@ -1,0 +1,30 @@
+---
+to: docker-compose.yaml
+---
+version: '3.7'
+
+services:
+<% services.forEach(service => { -%>
+
+  <%= service.properties.name -%>:
+<% if (service.properties.image_name) { -%>
+    image: <%= service.properties.image_name -%>
+<% } else { -%>
+    build: ./<%= service.properties.name -%>
+<% } -%>
+<% if (service.environment !== undefined) { -%>
+    
+    environment:
+<% Object.entries(service.environment).forEach(([key, value]) => { -%>
+      <%= key %>: <%= value %>
+<% }) -%>
+<% } else { -%>
+<%= %>
+<% } -%>
+    restart: on-failure
+    networks:
+      - <%= blueprintName %>
+ <% }) -%>
+
+networks:
+  <%= blueprintName %>:
