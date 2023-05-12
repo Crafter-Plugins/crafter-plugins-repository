@@ -1,0 +1,33 @@
+apiVersion: plugins/context/v1
+kind: ContextDefinition
+metadata:
+  name: KubernetesManifestContext
+spec:
+  contextObjects:
+    services:
+      selector:
+        getAllWithLabels:
+          labels:
+            - backend
+          includeFields:
+            - properties.name
+            - properties.image_name
+            - environment.port
+            - metadata.labels
+      forEach:
+        contextObjects:
+          dependsOn:
+            selector:
+              getNeighboursWithLabels:
+                labels:
+                  - backend
+                includeFields:
+                  - properties.name
+                  - metadata.labels
+            type: Array<object>
+      type: Array<object>
+
+    blueprintName:
+      selector:
+        getBlueprintName:
+      type: string

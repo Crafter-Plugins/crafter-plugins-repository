@@ -1,0 +1,12 @@
+---
+to: kubernetes-namespace.yaml
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <%= blueprintName %>
+  labels:
+    name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
