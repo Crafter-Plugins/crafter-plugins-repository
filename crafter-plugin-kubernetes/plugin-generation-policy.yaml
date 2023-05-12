@@ -1,7 +1,7 @@
 apiVersion: plugins/context/v1
 kind: GenerationPolicy
 metadata:
-  name: KubernetesGenerationPolicy
+  name: KubernetesManifestGenerationPolicy
 spec:
   useContext: true
 
