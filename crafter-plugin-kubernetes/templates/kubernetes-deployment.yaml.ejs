@@ -1,34 +1,7 @@
-<% 
-
-var services = [
-  {
-    properties: {
-      name: 'operator'
-    },
-    environment: {
-      port: '3000'
-    }
-  },
-  {
-    properties: {
-      name: 'db',
-      image_name: 'postgres:1.0'
-    },
-    environment: {
-      port: '5032'
-    }
-  }
-]
-
-var blueprintName = 'hello_world'
-
-var service = services[0]
-
--%>
-
 ---
 to: kubernetes-deployment-<%= service.properties.name %>.yaml
 ---
+
 apiVersion: v1
 kind: Deployment
 metadata:
