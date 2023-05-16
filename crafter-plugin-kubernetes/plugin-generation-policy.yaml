@@ -7,15 +7,15 @@ spec:
 
   repeatFileGeneration:
     - forEach:
-        services:
-          as: service
-      useTemplate:
+        obj: services
+        as: service
+      template:
         useCase: 'basic'
         templateFilePath: 'kubernetes-deployment.yaml.ejs'
     
     - forEach: 
-        services:
-          as: service
-        useTemplate:
-          useCase: 'basic'
-          templateFilePath: 'kubernetes-service.yaml.ejs'
+        obj: services
+        as: service
+      template:
+        useCase: 'basic'
+        templateFilePath: 'kubernetes-service.yaml.ejs'
