@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= environment.postgres_database_name %>/Dockerfile
+to: <%= outputPath %>/<%= properties.name %>/Dockerfile
 force: true
 ---
 
