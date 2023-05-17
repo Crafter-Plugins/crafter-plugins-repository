@@ -10,4 +10,7 @@ metadata:
   description: |
     Generates a docker compose file for the system you designed. Provides a pretty basic docker compose file.
 spec:
+  use_case:
+    cases:
+      - basic
   # ** nothing here, cricketss **
