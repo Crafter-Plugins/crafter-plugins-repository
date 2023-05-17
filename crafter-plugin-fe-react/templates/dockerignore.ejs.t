@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/.dockerignore
+to: <%= outputPath %>/<%= properties.name %>/.dockerignore
 force: true
 ---
 node_modules

@@ -13,25 +13,11 @@ metadata:
   icon_node_filename: ./node_icon.png
 spec:
   properties:
-    - name: frontend_name
+    - name: name
       description: Name of this frontend.
       type: string
       default: null
 
-    - name: use_ts
-      description: Whether to use typescript or not.
-      type: boolean
-      default: false
-
-    - name: use_tailwind
-      description: Whether to use tailwind or not
-      type: boolean
-      default: false
-
-    - name: use_bootstrap
-      description: Whether to use use bootstrap or not.
-      type: boolean
-      default: false
   environment:
     - name: port
       description: port number
@@ -39,20 +25,7 @@ spec:
       default: 4000
   use_case:
     cases:
-      - base
-      - with_ts
-      - with_tailwind
-      - with_bootstrap
-    case_matchers:
-      - condition: "properties.use_tailwind == true"
-        cases:
-          - with_tailwind
-      - condition: "properties.use_ts == true"
-        cases:
-          - with_ts
-      - condition: "properties.use_bootstrap == true"
-        cases:
-          - with_bootstrap
+      - basic
 
   validations:
     - max_nodes: 3

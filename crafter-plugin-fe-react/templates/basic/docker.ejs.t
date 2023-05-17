@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/Dockerfile
+to: <%= outputPath %>/<%= properties.name %>/Dockerfile
 force: true
 ---
 FROM node:alpine AS builder

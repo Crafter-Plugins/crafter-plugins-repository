@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/src/components/Main/index.jsx
+to: <%= outputPath %>/<%= properties.name %>/src/components/Main/index.jsx
 force: true
 ---
 import React from 'react';
@@ -13,7 +13,7 @@ const Main = () => {
       <span>Frontend</span>
       <span>Boilerplate</span>
       <%_ backends.forEach(backend => { _%>
-      <button onClick={() => navigate('/ping/<%= backend.name %>')}>ping <%= backend.name %></button>
+      <button onClick={() => navigate('/ping/<%= backend.properties.name %>')}>ping <%= backend.properties.name %></button>
       <%_ }) _%>
     </div>
   )

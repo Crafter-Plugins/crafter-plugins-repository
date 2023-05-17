@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/package.json
+to: <%= outputPath %>/<%= properties.name %>/package.json
 force: true
 ---
 {

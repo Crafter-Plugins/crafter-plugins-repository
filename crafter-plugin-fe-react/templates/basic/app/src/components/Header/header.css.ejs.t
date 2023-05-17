@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/src/components/Header/Header.css
+to: <%= outputPath %>/<%= properties.name %>/src/components/Header/Header.css
 force: true
 ---
 .header {

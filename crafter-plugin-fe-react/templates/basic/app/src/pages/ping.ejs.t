@@ -1,5 +1,5 @@
 ---
-to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.frontend_name + '/src/pages/Ping/index.jsx') : null) %>"
+to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.name + '/src/pages/Ping/index.jsx') : null) %>"
 force: true
 ---
 import React from 'react'

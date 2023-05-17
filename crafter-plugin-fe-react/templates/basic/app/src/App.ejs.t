@@ -1,5 +1,5 @@
 ---
-to:  <%= outputPath %>/<%= properties.frontend_name %>/src/App.jsx
+to:  <%= outputPath %>/<%= properties.name %>/src/App.jsx
 force: true
 ---
 import {BrowserRouter, Route, Routes} from 'react-router-dom';

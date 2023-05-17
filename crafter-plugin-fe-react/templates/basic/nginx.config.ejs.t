@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/nginx.conf
+to: <%= outputPath %>/<%= properties.name %>/nginx.conf
 force: true
 ---
 user  nginx;
@@ -32,8 +32,8 @@ server {
   }
   <%_ if(backends.length > 0 ) { _%>
   <%_ backends.forEach((backend) => { _%>
-  location /<%= backend.name %>/ {
-    proxy_pass http://<%= backend.name %>:<%= backend.port %>/;
+  location /<%= backend.properties.name %>/ {
+    proxy_pass http://<%= backend.properties.name %>:<%= backend.environment.port %>/;
   }
   <%_ }); _%>
   <%_ } _%>

@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/src/pages/Home/index.jsx
+to: <%= outputPath %>/<%= properties.name %>/src/pages/Home/index.jsx
 force: true
 ---
 import React from 'react'

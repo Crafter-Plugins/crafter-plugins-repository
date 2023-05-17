@@ -26,17 +26,24 @@ spec:
                       - metadata.labels
                 type: Array<object>
       type: Array<object>
-    databases:
+    
+    backends:
       get_all_with_labels:
           labels:
-            - frontend
+            - backend
           include_fields:
-            - properties.length
             - properties.name
-            - properties.dbPassword
-            - properties.dbHost
-            - properties.dbUser
-            - properties.port
+            - environment.port
+      type: Array<object>
+    
+    envVariable:
+      get_all_with_labels:
+          labels:
+            - fronend
+          include_fields:
+            - properties.value
+      type: Array<object>
+    
     blueprint_name:
       selector:
         get_blueprint_name:

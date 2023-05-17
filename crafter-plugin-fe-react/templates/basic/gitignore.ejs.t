@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/.gitignore
+to: <%= outputPath %>/<%= properties.name %>/.gitignore
 force: true
 ---
 node_modules 

@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/src/components/Footer/Footer.css
+to: <%= outputPath %>/<%= properties.name %>/src/components/Footer/Footer.css
 force: true
 ---
 .footer {

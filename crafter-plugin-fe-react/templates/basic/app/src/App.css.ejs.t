@@ -1,5 +1,5 @@
 ---
-to:  <%= outputPath %>/<%= properties.frontend_name %>/src/App.css
+to:  <%= outputPath %>/<%= properties.name %>/src/App.css
 force: true
 ---
 .App {

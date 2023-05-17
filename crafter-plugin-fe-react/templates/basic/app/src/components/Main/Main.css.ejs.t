@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.frontend_name %>/src/components/Main/Main.css
+to: <%= outputPath %>/<%= properties.name %>/src/components/Main/Main.css
 force: true
 ---
 .main-body {
