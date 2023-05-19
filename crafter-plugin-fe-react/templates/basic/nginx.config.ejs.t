@@ -24,7 +24,7 @@ http {
   #include /etc/nginx/conf.d/*.conf;
 
 server {
-  listen 80;
+  listen <%= environment.port %>;
   location / {
     root   /usr/share/nginx/html;
     index  index.html index.htm;

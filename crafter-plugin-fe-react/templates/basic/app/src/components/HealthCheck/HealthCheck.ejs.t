@@ -1,5 +1,5 @@
 ---
-to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.name + '/src/components/HealthCheck/index.jsx') : null) %>"
+to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.name + '/src/components/HealthCheck/index.jsx') : '') %>"
 force: true
 ---
 import React, {useState, useEffect} from 'react';

@@ -1,5 +1,5 @@
 ---
-to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.name + '/src/components/HealthCheck/HealthCheck.css') : null) %>"
+to:  "<%= (backends.length > 0 ? (outputPath + '/' + properties.name + '/src/components/HealthCheck/HealthCheck.css') : '') %>"
 force: true
 ---
 

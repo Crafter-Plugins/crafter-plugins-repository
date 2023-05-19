@@ -1,5 +1,5 @@
 ---
-to:  "<%= (backends.length >= 1 ? (outputPath + '/' + properties.name + '/src/constants/apiEndPoints.js') : null) %>"
+to:  "<%= (backends.length >= 1 ? (outputPath + '/' + properties.name + '/src/constants/apiEndPoints.js') : '') %>"
 force: true
 ---
 export const BACKEND_INFO = {
