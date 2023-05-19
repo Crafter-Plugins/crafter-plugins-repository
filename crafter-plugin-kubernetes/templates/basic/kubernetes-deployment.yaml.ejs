@@ -3,7 +3,7 @@ to: kubernetes-deployment-<%= service.properties.name %>.yaml
 useRelativePath: true
 ---
 
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: <%= service.properties.name %>-deployment
@@ -28,5 +28,5 @@ spec:
           env:
 <% Object.entries(service.environment).forEach(([key, value]) => { -%>
             - name: <%= key %>
-              value: <%= value %>
+              value: "<%= value %>"
 <% }) -%>
