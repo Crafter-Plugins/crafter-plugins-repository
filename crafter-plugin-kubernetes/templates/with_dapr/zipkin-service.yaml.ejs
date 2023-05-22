@@ -1,0 +1,22 @@
+---
+to: zipkin-service.yaml
+useRelativePath: true
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipkin
+  namespace: <%= blueprintName %>
+  labels:
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
+    io.crafter/app-component: zipkin
+spec:
+  ports:
+  - port: 9411
+    protocol: TCP
+    targetPort: 9411
+  selector:
+    io.crafter/app-component: zipkin
+  type: LoadBalancer

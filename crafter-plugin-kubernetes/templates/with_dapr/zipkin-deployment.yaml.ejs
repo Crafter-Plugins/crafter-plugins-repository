@@ -1,0 +1,32 @@
+---
+to: zipkin-deployment.yaml
+useRelativePath: true
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin
+  namespace: <%= blueprintName %>
+  labels:
+    io.crafter/blueprint-name: <%= blueprintName %>
+    app.kubernetes.io/managed-by: crafter
+    io.crafter/app-component: zipkin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.crafter/app-component: zipkin
+  template:
+    metadata:
+      namespace: <%= blueprintName %>
+      labels:
+        io.crafter/blueprint-name: <%= blueprintName %>
+        app.kubernetes.io/managed-by: crafter
+        io.crafter/app-component: zipkin
+    spec:
+      containers:
+      - name: zipkin
+        image: openzipkin/zipkin
+        ports:
+        - containerPort: 9411

@@ -13,7 +13,8 @@ metadata:
     app.kubernetes.io/managed-by: crafter
 spec:
   ports:
-  - port: <%= service.environment.port %>
+  - port: <%= service.environment.port || service.environment.PORT %>
     protocol: TCP
+    targetPort: <%= service.environment.port || service.environment.PORT %>
   selector:
     io.crafter/blueprint-name: <%= blueprintName %>

@@ -14,4 +14,9 @@ spec:
   use_case:
     cases:
       - basic
+      - with_dapr
+    case_matchers:
+      - condition: "deploymentStackPlugins.includes('Dapr')"
+        cases:
+          - with_dapr
   # ** nothing here, cricketss **

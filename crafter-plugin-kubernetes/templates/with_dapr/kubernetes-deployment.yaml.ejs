@@ -20,13 +20,15 @@ spec:
     metadata:
       labels:
         io.crafter/blueprint-name: <%= blueprintName %>
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "<%= service.properties.name %>"
+        dapr.io/app-port: "<%= service.environment.port || service.environment.PORT || service.properties.port || service.properties.PORT %>"
+        dapr.io/config: "daprConfig"
     spec:
       containers:
         - name: <%= service.properties.name %>
 <% if (service.properties.image_name == undefined) service.properties.image_name = service.properties.name -%>
           image: <%= service.properties.image_name %>
-          ports:
-            - containerPort: <%= service.environment.port || service.environment.PORT || service.properties.port || service.environment.PORT %>
           env:
 <% Object.entries(service.environment).forEach(([key, value]) => { -%>
             - name: <%= key.toUpperCase() %>

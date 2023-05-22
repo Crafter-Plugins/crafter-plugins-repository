@@ -27,6 +27,9 @@ spec:
             type: Array<object>
       type: Array<object>
 
+    # deploymentStackPlugins is provided by default, of type: Array<string>
+    # each element is the name of the deploymentStackPlugins in use
+
     blueprintName:
       selector:
         getBlueprintName:

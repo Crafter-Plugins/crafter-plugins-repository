@@ -12,6 +12,13 @@ spec:
       template:
         useCase: 'basic'
         templateFilePath: 'kubernetes-deployment.yaml.ejs'
+
+    - forEach:
+        obj: services
+        as: service
+      template:
+        useCase: 'with_dapr'
+        templateFilePath: 'kubernetes-deployment.yaml.ejs'
     
     - forEach: 
         obj: services

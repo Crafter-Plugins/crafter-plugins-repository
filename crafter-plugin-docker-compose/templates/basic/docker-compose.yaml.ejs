@@ -1,3 +1,93 @@
+<% 
+// sample data for checking the template
+// var services = [
+//   {
+//     properties: {
+//       name: 'service1',
+//     },
+//     environment: {
+//       port: 3000
+//     },
+//     metadata: {
+//       labels: ['backend', 'nodejs']
+//     }
+//   },
+//   {
+//     properties: {
+//       name: 'service2',
+//     },
+//     environment: {
+//       port: 5000
+//     },
+//     metadata: {
+//       labels: ['backend', 'java']
+//     }
+//   },
+//   {
+//     properties: {
+//       name: 'db',
+//       image_name: 'postgres:latest'
+//     },
+//     environment: {
+//       port: 5032
+//     },
+//     metadata: {
+//       labels: ['database']
+//     }
+//   }
+// ]
+
+// const blueprintName = 'hola'
+// const deploymentStackPlugins = ['Dapr', 'DockerCompose']
+
+-%>
+<%
+const servicesThatDontNeedDaprSidecar = new Set(
+  [
+    'database', 
+    'state-store', 
+    'state_store', 
+    'queue',
+    'dbms',
+    'rdbms',
+    'nosql', 'sql',
+    'message_broker',
+    'message-broker',
+    'rabbitmq',
+    'amqp', 'mq', 'message_queue',
+    'message-queue',
+    'object_store',
+    'object-store',
+    'object_storage',
+    'object-storage',
+    'file_store',
+    'file-store',
+    'file_storage',
+    'file-storage',
+    'blob_storage',
+    'blob-storage',
+    'blob_store',
+    'blob-store',
+    'redis', 'db',
+    'nginx', 'reverse_proxy', 'reverse-proxy', 'nodapr',
+    'no_dapr_sidecar', 'no-dapr-sidecar', 'no_dapr', 'no-dapr'
+  ]
+)
+
+function needsSidecar(lbls) {
+  const returnval = []
+  lbls.forEach(element => {
+    if (servicesThatDontNeedDaprSidecar.has(element)) {
+      returnval.push(element)
+      // somehow return false does not work here properly
+    }
+  });
+
+  return !(returnval.length > 0)
+}
+   
+-%>
+
 ---
 to: docker-compose.yaml
 useRelativePath: true
@@ -17,7 +107,13 @@ services:
     
     environment:
 <% Object.entries(service.environment).forEach(([key, value]) => { -%>
-      <%= key %>: <%= value %>
+      <%= key.toUpperCase() %>: <%= value %>
+<% if (deploymentStackPlugins.includes('Dapr') && needsSidecar(service.metadata.labels)) { -%>
+      DAPR_HOST: "<%= service.properties.name %>-dapr"
+      DAPR_HTTP_PORT: "3601"
+      APP_PORT: "<%= service.environment.port || service.environment.PORT %>"
+      APP_HOST: "<%= service.properties.name %>"
+<% } -%>
 <% }) -%>
 <% } else { -%>
 <%= %>
@@ -25,7 +121,58 @@ services:
     restart: on-failure
     networks:
       - <%= blueprintName %>
- <% }) -%>
+<% if (deploymentStackPlugins.includes('Dapr') && needsSidecar(service.metadata.labels)) { -%>
+  
+  <%= service.properties.name %>-dapr:
+    image: "daprio/daprd:edge"
+    command:
+      [
+        "./daprd",
+        "--app-id",
+        "<%= service.properties.name %>",
+        "--app-port",
+        "<%= service.environment.port || service.environment.PORT || service.properties.port || service.properties.PORT %>",
+        "--dapr-http-port",
+        "3601",
+        "--placement-host-address",
+        "placement:50006",
+        "--resources-path",
+        "/dapr/components",
+        "--config",
+        "/dapr/config.yaml"
+      ]
+    healthcheck:
+      test: [ "CMD", "pgrep daprd" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    volumes:
+      - "./dapr/components:/dapr/components"
+      - "./dapr/config.yaml:/dapr/config.yaml"
+    network_mode: "service:<%= service.properties.name %>"
+    depends_on:
+      - placement
+      - <%= service.properties.name %>
+      - zipkin
+  <% } -%>
+<% }) -%>
+
+<% if (deploymentStackPlugins.includes('Dapr')) { -%>
+  placement:
+    image: "daprio/dapr"
+    command: [ "./placement", "--port", "50006" ]
+    ports:
+      - "50006:50006"
+    networks:
+      - <%= blueprintName %>
+
+  zipkin:
+    image: openzipkin/zipkin:2.23
+    ports:
+      - "9411:9411"
+    networks:
+      - <%= blueprintName %>
+<% } -%>
 
 networks:
   <%= blueprintName %>:
