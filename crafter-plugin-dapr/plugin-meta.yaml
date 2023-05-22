@@ -1,0 +1,13 @@
+apiVersion: plugins/v1
+kind: DeploymentStack
+metadata:
+  name: Dapr
+  author: Sneha Trivedi
+  labels:
+    - devops
+    - deployment_stack
+    - dapr
+  description: |
+    Provide the components for dapr .
+spec:
+  # ** nothing here, cricketss **

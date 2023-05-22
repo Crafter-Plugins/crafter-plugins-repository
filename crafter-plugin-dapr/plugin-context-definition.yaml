@@ -1,0 +1,10 @@
+apiVersion: plugins/context/v1
+kind: ContextDefinition
+metadata:
+  name: DaprContext
+spec:
+  contextObjects:
+    blueprintName:
+      selector:
+        getBlueprintName:
+      type: string
