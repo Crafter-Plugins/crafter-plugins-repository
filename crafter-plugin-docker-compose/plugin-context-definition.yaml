@@ -9,6 +9,7 @@ spec:
         getAllWithLabels:
           labels:
             - backend
+            - nginx
           includeFields:
             - properties.name
             - properties.image_name
