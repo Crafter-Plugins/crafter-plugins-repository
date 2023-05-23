@@ -1,5 +1,5 @@
 ---
-to: <%= outputPath %>/<%= properties.name %>/basic/dapr/config.yaml
+to: <%= outputPath %>/dapr/config.yaml
 force: true
 ---
 

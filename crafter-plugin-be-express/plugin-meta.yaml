@@ -34,9 +34,6 @@ spec:
         cases:
           - basic_dapr
   validations:
-    max_nodes_in_diagram:
-      max_nodes: 2
-      on_violation: warning
     connectable_to:
       - has_tags:
           - frontend
