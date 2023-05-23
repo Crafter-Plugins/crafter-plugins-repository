@@ -14,7 +14,7 @@ spec:
             - environment.postgres_database_name
             - environment.postgres_db_user
             - environment.postgres_db_password
-            - environment.postgres_port
+            - environment.port
 
       type: Array<object>
 

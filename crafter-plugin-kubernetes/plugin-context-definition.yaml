@@ -9,6 +9,7 @@ spec:
         getAllWithLabels:
           labels:
             - backend
+            - database
           includeFields:
             - properties.name
             - properties.image_name

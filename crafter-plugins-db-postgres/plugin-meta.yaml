@@ -19,7 +19,7 @@ spec:
       type: string
       default: postgres
     
-    - name: postgres_port
+    - name: port
       description: Name of the port
       type: integer
       default: 5432

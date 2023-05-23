@@ -1,3 +1,7 @@
+---
+to: docker-compose.yaml
+useRelativePath: true
+---
 <% 
 // sample data for checking the template
 // var services = [
@@ -87,11 +91,6 @@ function needsSidecar(lbls) {
 }
    
 -%>
-
----
-to: docker-compose.yaml
-useRelativePath: true
----
 version: '3.7'
 
 services:
