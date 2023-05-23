@@ -9,27 +9,27 @@ spec:
     - forEach:
         obj: databases
         as: database
-      useTemplate:
+      template:
         useCase: 'basic_db'
         templateFilePath: 'module/database/migrations/create-model.ejs.t'
     
     - forEach: 
         obj: databases
         as: database
-      useTemplate:
+      template:
         useCase: 'basic_db'
         templateFilePath: 'module/database/seeders/seed-data.ejs.t'
           
     - forEach:
         obj: databases
         as: database
-      useTemplate:
+      template:
         useCase: 'basic_db'
         templateFilePath: 'module/sequelizerc.ejs.t'
     
     - forEach:
         obj: databases
         as: database
-      useTemplate:
+      template:
         useCase: 'basic_db'
         templateFilePath: 'module/src/models/model.ejs.t'
