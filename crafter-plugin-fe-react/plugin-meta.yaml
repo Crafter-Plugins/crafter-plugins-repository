@@ -1,0 +1,45 @@
+apiVersion: plugins/v1
+kind: SystemComponent
+metadata:
+  name: react-frontend
+  description: A ReactJS frontend.
+  author: Souris Ash
+  github_url: https://github.com/crafter-plugins/react-frontend
+  labels:
+    - frontend
+    - react
+    - client_side
+  icon_toolbar_filename: ./toolbar_icon.png
+  icon_node_filename: ./node_icon.png
+spec:
+  properties:
+    - name: name
+      description: Name of this frontend.
+      type: string
+      default: null
+
+  environment:
+    - name: port
+      description: port number
+      type: integer
+      default: 4000
+  use_case:
+    cases:
+      - basic
+      - with_backend
+    case_matchers:
+      - condition: "backends.length > 0"
+        cases:
+          - with_backend
+
+  validations:
+    - connectable_to:
+        - has_tags:
+          - backend
+      on_violation: error
+
+  file_injection_policies:
+    - "*.env":
+        # injections can happen at: boilerplate_generation, image_creation, container_creation
+        inject_at:
+          - image_creation

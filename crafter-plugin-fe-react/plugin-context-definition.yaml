@@ -1,0 +1,20 @@
+contextApiVersion: plugins/context/v1
+kind: ContextDefinition
+metadata:
+  name: ReactFrontendContext
+spec:
+  contextObjects:  
+    backends:
+      selector:
+        getNeighboursWithLabels:
+            labels:
+              - backend
+            includeFields:
+              - properties.name
+              - environment.port
+      type: Array<object>
+          
+    blueprintName:
+      selector:
+        getBlueprintName:
+      type: string
