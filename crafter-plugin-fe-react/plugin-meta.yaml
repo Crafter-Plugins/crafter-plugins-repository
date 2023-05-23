@@ -34,10 +34,10 @@ spec:
           - with_backend
 
   validations:
-    - connectable_to:
-        - has_tags:
-          - backend
-      on_violation: error
+    connectable_to:
+      - has_tags:
+        - backend
+        on_violation: error
 
   file_injection_policies:
     - "*.env":
