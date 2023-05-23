@@ -1,0 +1,35 @@
+apiVersion: plugins/context/v1
+kind: GenerationPolicy
+metadata:
+  name: ExpressBackendGenerationPolicy
+spec:
+  useContext: true
+
+  repeatFileGeneration:
+    - forEach:
+        obj: databases
+        as: database
+      useTemplate:
+        useCase: 'basic_db'
+        templateFilePath: 'module/database/migrations/create-model.ejs.t'
+    
+    - forEach: 
+        obj: databases
+        as: database
+      useTemplate:
+        useCase: 'basic_db'
+        templateFilePath: 'module/database/seeders/seed-data.ejs.t'
+          
+    - forEach:
+        obj: databases
+        as: database
+      useTemplate:
+        useCase: 'basic_db'
+        templateFilePath: 'module/sequelizerc.ejs.t'
+    
+    - forEach:
+        obj: databases
+        as: database
+      useTemplate:
+        useCase: 'basic_db'
+        templateFilePath: 'module/src/models/model.ejs.t'

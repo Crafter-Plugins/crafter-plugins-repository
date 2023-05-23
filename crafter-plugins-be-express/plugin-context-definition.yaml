@@ -1,0 +1,34 @@
+apiVersion: plugins/context/v1
+kind: ContextDefinition
+metadata:
+  name: ExpressBackendContext
+spec:
+  contextObjects:
+    databases:
+      selector:
+        getNeighboursWithLabels:
+          labels:
+            - database
+          includeFields:
+            - properties.name
+            - environment.postgres_database_name
+            - environment.postgres_db_user
+            - environment.postgres_db_password
+            - environment.postgres_port
+
+      type: Array<object>
+
+    frontend:
+      selector:
+        getNeighboursWithLabels:
+          labels:
+            - frontend
+          includeFields:
+            - properties.name
+            - environment.port    
+      type: Array<object>
+
+    blueprintName:
+      selector:
+        getBlueprintName:
+      type: string

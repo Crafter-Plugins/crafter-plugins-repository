@@ -3,7 +3,7 @@ to: <%= outputPath %>/<%= properties.name %>/package.json
 force: true
 ---
 {
-  "name": "<%= properties.backend %>",
+  "name": "<%= properties.name %>",
   "version": "1.0.0",
   "description": "Standalone Backend Boilerplate using NodeJS and Express",
   "main": "index.js",

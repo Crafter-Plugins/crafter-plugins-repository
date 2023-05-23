@@ -8,7 +8,6 @@ const routes =require('./src/routes/healthcheck.routes.js');
 const app = express();
 const PORT = process.env.PORT || <%= environment.port %>;
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', routes);

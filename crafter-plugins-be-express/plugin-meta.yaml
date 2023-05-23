@@ -16,10 +16,6 @@ spec:
       description: Name of this backend.
       type: string
       default: null
-    - name: use_ts
-      description: Whether to use typescript or not.
-      type: boolean
-      default: null
   environment:
     - name: port
       description: port number
@@ -27,12 +23,16 @@ spec:
       default: 4000
   use_case:
     cases:
-      - base
-      - with_ts
+      - basic
+      - basic_db
+      - basic_dapr
     case_matchers:
-      - condition: "properties.use_ts == true"
+      - condition: "databases.length > 0"
         cases:
-          - with_ts
+          - basic_db
+      - condition: "deploymentStackPlugins.includes('Dapr')"
+        cases:
+          - basic_dapr
   validations:
     max_nodes_in_diagram:
       max_nodes: 2
