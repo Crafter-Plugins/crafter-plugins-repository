@@ -32,4 +32,5 @@ jobs:
       - name: Push main branch of this repo to the main branch of the open source repo
         run: |
           git checkout main
+          git config --unset-all http.https://github.com/.extraheader
           git push opensource main
