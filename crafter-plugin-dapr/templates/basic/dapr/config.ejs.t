@@ -16,5 +16,5 @@ spec:
     expandParams: true
     includeBody: true
     zipkin:
-      endpointAddress: <% if (deploymentStackPlugins.includes('KubernetesManifest')) { %>http://zipkin.<%= blueprintName %>.svc.cluster.local:9411/api/v2/spans
+      endpointAddress: <% if (deploymentStackPlugins.includes('KubernetesManifest')) { %>http://zipkin.<%= blueprintName.toLowerCase() %>.svc.cluster.local:9411/api/v2/spans
                         <% } else { %>http://zipkin:9411/api/v2/spans<% } %>

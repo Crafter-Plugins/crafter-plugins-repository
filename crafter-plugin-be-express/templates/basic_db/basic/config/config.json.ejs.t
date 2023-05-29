@@ -11,7 +11,7 @@ module.exports = {
       "username": "<%= database.environment.postgres_db_user %>",
       "password": "<%= database.environment.postgres_db_password %>",
       "database": "<%= database.environment.postgres_database_name %>",
-      "host": "localhost",
+      "host": "<%= deploymentStackPlugins.includs('Dapr') ? database.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' || 'localhost' %>",
       "dialect": "postgres",
       "port": "<%= database.environment.port %>"
     }<% if(index < databases.length - 1) { %>,<% } %>
@@ -25,7 +25,7 @@ module.exports = {
       "username": "<%= database.environment.postgres_db_user %>",
       "password": "<%= database.environment.postgres_db_password %>",
       "database": "<%= database.environment.postgres_database_name %>",
-      "host": "localhost",
+      "host": "<%= deploymentStackPlugins.includs('Dapr') ? database.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' || 'localhost' %>",
       "dialect": "postgres",
       "port": "<%= database.environment.port %>"
     }<% if(index < databases.length - 1) { %>,<% } %>
@@ -39,7 +39,7 @@ module.exports = {
       "username": "<%= database.environment.postgres_db_user %>",
       "password": "<%= database.environment.postgres_db_password %>",
       "database": "<%= database.environment.postgres_database_name %>",
-      "host": "localhost",
+      "host": "<%= deploymentStackPlugins.includs('Dapr') ? database.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' || 'localhost' %>",
       "dialect": "postgres",
       "port": "<%= database.environment.port %>"
     }<% if(index < databases.length - 1) { %>,<% } %>
@@ -51,7 +51,7 @@ module.exports = {
     "username": "<%= database.environment.postgres_db_user %>",
     "password": "<%= database.environment.postgres_db_password %>",
     "database": "<%= database.environment.postgres_database_name %>",
-    "host": "localhost",
+    "host": "<%= deploymentStackPlugins.includs('Dapr') ? database.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' || 'localhost' %>",
     "dialect": "postgres",
     "port": "<%= database.environment.port %>"
     }<% if(index < databases.length - 1) { %>,<% } %>
