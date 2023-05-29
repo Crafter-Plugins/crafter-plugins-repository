@@ -1,4 +1,6 @@
-# Creating a Plugin
+# Crafter Plugins Repository
+
+## Creating your own plugin
 
 This repository contains instructions for creating a plugin. The plugin will contain templates, two icons - toolbar-icon.png and node-icon.png, and a plugin-meta.yaml file.
 
