@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: '<%= database.properties.name %>',
+    freezeTableName: true,
   });
   return <%= database.properties.name %>;
 };

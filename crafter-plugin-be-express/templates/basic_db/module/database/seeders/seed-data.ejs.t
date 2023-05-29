@@ -19,17 +19,17 @@ module.exports = {
     */
     return queryInterface.bulkInsert('<%= database.properties.name %>', [
       {
-        name: <%= database.properties.name %>1,
+        name: "<%= database.properties.name %>-1",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: <%= database.properties.name %>2,
+        name: "<%= database.properties.name %>-2",
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: <%= database.properties.name %>3,
+        name: "<%= database.properties.name %>-3",
         createdAt: new Date(),
         updatedAt: new Date()
       }
