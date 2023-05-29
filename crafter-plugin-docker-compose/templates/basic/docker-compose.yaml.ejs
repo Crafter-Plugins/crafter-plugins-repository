@@ -24,7 +24,7 @@ useRelativePath: true
 //       port: 5000
 //     },
 //     metadata: {
-//       labels: ['backend', 'java']
+//       labels: ['frontend', 'java']
 //     }
 //   },
 //   {
@@ -41,7 +41,7 @@ useRelativePath: true
 //   }
 // ]
 
-// const blueprintName.toLowerCase() = 'hola'
+// const blueprintName = 'hola'
 // const deploymentStackPlugins = ['Dapr', 'DockerCompose']
 
 -%>
@@ -101,6 +101,11 @@ services:
     image: <%= service.properties.image_name.toLowerCase() -%>
 <% } else { -%>
     build: ./<%= service.properties.name -%>
+<% } -%>
+<% if (service.metadata.labels.includes('frontend')) { -%>
+    
+    ports:
+      - "<%= service.environment.port %>:<%= service.environment.port %>"
 <% } -%>
 <% if (service.environment !== undefined) { -%>
     
