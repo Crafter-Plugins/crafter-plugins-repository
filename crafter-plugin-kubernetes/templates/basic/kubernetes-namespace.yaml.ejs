@@ -6,8 +6,8 @@ useRelativePath: true
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: <%= blueprintName %>
+  name: <%= blueprintName.toLowerCase() %>
   labels:
-    name: <%= blueprintName %>
-    io.crafter/blueprint-name: <%= blueprintName %>
+    name: <%= blueprintName.toLowerCase() %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     app.kubernetes.io/managed-by: crafter

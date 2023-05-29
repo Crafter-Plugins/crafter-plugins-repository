@@ -6,10 +6,10 @@ useRelativePath: true
 apiVersion: v1
 kind: Service
 metadata:
-  name: <%= service.properties.name %>-service
-  namespace: <%= blueprintName %>
+  name: <%= service.properties.name.toLowerCase() %>-service
+  namespace: <%= blueprintName.toLowerCase() %>
   labels:
-    io.crafter/blueprint-name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     app.kubernetes.io/managed-by: crafter
 spec:
   ports:
@@ -17,4 +17,4 @@ spec:
     protocol: TCP
     targetPort: <%= service.environment.port || service.environment.PORT %>
   selector:
-    io.crafter/blueprint-name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>

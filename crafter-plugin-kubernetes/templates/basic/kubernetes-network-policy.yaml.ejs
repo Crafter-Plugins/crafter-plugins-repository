@@ -6,10 +6,10 @@ useRelativePath: true
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: <%= blueprintName %>-intra-namespace-network-policy
-  namespace: <%= blueprintName %>
+  name: <%= blueprintName.toLowerCase() %>-intra-namespace-network-policy
+  namespace: <%= blueprintName.toLowerCase() %>
   labels:
-    io.crafter/blueprint-name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     app.kubernetes.io/managed-by: crafter
 spec:
   podSelector: {}
@@ -20,5 +20,5 @@ spec:
     - from:
         - namespaceSelector:
             matchLabels:
-              name: <%= blueprintName %>
-              io.crafter/blueprint-name: <%= blueprintName %>
+              name: <%= blueprintName.toLowerCase() %>
+              io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>

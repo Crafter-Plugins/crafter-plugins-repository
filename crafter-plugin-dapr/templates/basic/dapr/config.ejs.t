@@ -6,8 +6,8 @@ force: true
 apiVersion: dapr.io/v1alpha1
 kind: Configuration
 metadata:
-  name: daprConfig
-  namespace: <%= blueprintName %>
+  name: dapr-config
+  namespace: <%= blueprintName.toLowerCase() %>
 
 spec:
   tracing:

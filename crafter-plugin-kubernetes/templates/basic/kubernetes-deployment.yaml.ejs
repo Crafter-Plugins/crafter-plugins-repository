@@ -6,24 +6,24 @@ useRelativePath: true
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: <%= service.properties.name %>-deployment
-  namespace: <%= blueprintName %>
+  name: <%= service.properties.name.toLowerCase() %>-deployment
+  namespace: <%= blueprintName.toLowerCase() %>
   labels:
-    io.crafter/blueprint-name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     app.kubernetes.io/managed-by: crafter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.crafter/blueprint-name: <%= blueprintName %>
+      io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
   template:
     metadata:
       labels:
-        io.crafter/blueprint-name: <%= blueprintName %>
+        io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     spec:
       containers:
-        - name: <%= service.properties.name %>
-<% if (service.properties.image_name == undefined) service.properties.image_name = service.properties.name -%>
+        - name: <%= service.properties.name.toLowerCase() %>
+<% if (service.properties.image_name == undefined) service.properties.image_name = service.properties.name.toLowerCase() -%>
           image: <%= service.properties.image_name %>
           ports:
             - containerPort: <%= service.environment.port || service.environment.PORT || service.properties.port || service.environment.PORT %>

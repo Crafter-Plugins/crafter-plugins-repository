@@ -7,9 +7,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: zipkin
-  namespace: <%= blueprintName %>
+  namespace: <%= blueprintName.toLowerCase() %>
   labels:
-    io.crafter/blueprint-name: <%= blueprintName %>
+    io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
     app.kubernetes.io/managed-by: crafter
     io.crafter/app-component: zipkin
 spec:
@@ -19,9 +19,9 @@ spec:
       io.crafter/app-component: zipkin
   template:
     metadata:
-      namespace: <%= blueprintName %>
+      namespace: <%= blueprintName.toLowerCase() %>
       labels:
-        io.crafter/blueprint-name: <%= blueprintName %>
+        io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
         app.kubernetes.io/managed-by: crafter
         io.crafter/app-component: zipkin
     spec:
