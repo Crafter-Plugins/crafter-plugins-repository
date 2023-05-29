@@ -10,6 +10,7 @@ spec:
           labels:
             - backend
             - database
+            - nginx
           includeFields:
             - properties.name
             - properties.image_name
