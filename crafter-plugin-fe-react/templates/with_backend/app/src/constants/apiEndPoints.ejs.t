@@ -4,7 +4,7 @@ force: true
 ---
 export const BACKEND_INFO = {
 <% backends.forEach((backend) => { %>
-  <%= backend.name %>: {
+  <%= backend.properties.name %>: {
     BACKEND_URL: '/<%= backend.properties.name %>',
     PING_BACKEND: {
       baseURL: '/<%= backend.properties.name %>',
