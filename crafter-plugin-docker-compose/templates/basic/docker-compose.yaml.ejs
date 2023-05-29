@@ -41,7 +41,7 @@ useRelativePath: true
 //   }
 // ]
 
-// const blueprintName = 'hola'
+// const blueprintName.toLowerCase() = 'hola'
 // const deploymentStackPlugins = ['Dapr', 'DockerCompose']
 
 -%>
@@ -96,9 +96,9 @@ version: '3.7'
 services:
 <% services.forEach(service => { -%>
 
-  <%= service.properties.name -%>:
+  <%= service.properties.name.toLowerCase() -%>:
 <% if (service.properties.image_name) { -%>
-    image: <%= service.properties.image_name -%>
+    image: <%= service.properties.image_name.toLowerCase() -%>
 <% } else { -%>
     build: ./<%= service.properties.name -%>
 <% } -%>
@@ -108,10 +108,10 @@ services:
 <% Object.entries(service.environment).forEach(([key, value]) => { -%>
       <%= key.toUpperCase() %>: <%= value %>
 <% if (deploymentStackPlugins.includes('Dapr') && needsSidecar(service.metadata.labels)) { -%>
-      DAPR_HOST: "<%= service.properties.name %>-dapr"
+      DAPR_HOST: "<%= service.properties.name.toLowerCase() %>-dapr"
       DAPR_HTTP_PORT: "3601"
       APP_PORT: "<%= service.environment.port || service.environment.PORT %>"
-      APP_HOST: "<%= service.properties.name %>"
+      APP_HOST: "<%= service.properties.name.toLowerCase() %>"
 <% } -%>
 <% }) -%>
 <% } else { -%>
@@ -119,7 +119,7 @@ services:
 <% } -%>
     restart: on-failure
     networks:
-      - <%= blueprintName %>
+      - <%= blueprintName.toLowerCase() %>
 <% if (deploymentStackPlugins.includes('Dapr') && needsSidecar(service.metadata.labels)) { -%>
   
   <%= service.properties.name %>-dapr:
@@ -128,7 +128,7 @@ services:
       [
         "./daprd",
         "--app-id",
-        "<%= service.properties.name %>",
+        "<%= service.properties.name.toLowerCase() %>",
         "--app-port",
         "<%= service.environment.port || service.environment.PORT || service.properties.port || service.properties.PORT %>",
         "--dapr-http-port",
@@ -148,10 +148,10 @@ services:
     volumes:
       - "./dapr/components:/dapr/components"
       - "./dapr/config.yaml:/dapr/config.yaml"
-    network_mode: "service:<%= service.properties.name %>"
+    network_mode: "service:<%= service.properties.name.toLowerCase() %>"
     depends_on:
       - placement
-      - <%= service.properties.name %>
+      - <%= service.properties.name.toLowerCase() %>
       - zipkin
   <% } -%>
 <% }) -%>
@@ -163,15 +163,15 @@ services:
     ports:
       - "50006:50006"
     networks:
-      - <%= blueprintName %>
+      - <%= blueprintName.toLowerCase() %>
 
   zipkin:
     image: openzipkin/zipkin:2.23
     ports:
       - "9411:9411"
     networks:
-      - <%= blueprintName %>
+      - <%= blueprintName.toLowerCase() %>
 <% } -%>
 
 networks:
-  <%= blueprintName %>:
+  <%= blueprintName.toLowerCase() %>:
