@@ -32,8 +32,8 @@ server {
   }
   <%_ if(backends.length > 0 ) { _%>
   <%_ backends.forEach((backend) => { _%>
-  location /<%= backend.properties.name %>/ {
-    proxy_pass http://<%= backend.properties.name %>:<%= backend.environment.port %>/;
+  location /<%= backend.properties.name.toLowerCase() %>/ {
+    proxy_pass http://<%= backend.properties.name.toLowerCase() %>:<%= backend.environment.port %>/;
   }
   <%_ }); _%>
   <%_ } _%>
