@@ -28,6 +28,7 @@ force: true
     "eslint": "^8.33.0"
   },
   "dependencies": {
+    "@dapr/dapr": "^3.0.0",
     "express": "^4.18.2",
     "cors": "^2.8.5"
   }
