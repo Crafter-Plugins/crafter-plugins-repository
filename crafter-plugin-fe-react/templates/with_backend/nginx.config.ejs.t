@@ -60,7 +60,7 @@ server {
   <%_ if(backends.length > 0 ) { _%>
   <%_ backends.forEach((backend) => { _%>
   location /<%= backend.properties.name.toLowerCase() %>/ {
-    proxy_pass http://<% if (deploymentStackPlugins.includes('KubernetesManifest')) { -%><%= backend.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' %><% } else { -%><%= backend.properties.name.toLowerCase() %><% } -%>:<%= backend.environment.port %>/;
+    proxy_pass http://<% if (deploymentStackPlugins.includes('KubernetesManifest')) { -%><%= backend.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '-service.svc.cluster.local' %><% } else { -%><%= backend.properties.name.toLowerCase() %><% } -%>:<%= backend.environment.port %>/;
   }
   <%_ }); _%>
   <%_ } _%>
