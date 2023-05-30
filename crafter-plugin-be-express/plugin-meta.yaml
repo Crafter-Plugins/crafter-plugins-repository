@@ -10,12 +10,7 @@ metadata:
     - server_side
   icon_toolbar_filename: ./toolbar_icon.png
   icon_node_filename: ./node_icon.png #path to node icon
-spec:  
-  properties:
-    - name: backend_name
-      description: Name of this backend.
-      type: string
-      default: null
+spec:
   environment:
     - name: port
       description: port number
