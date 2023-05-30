@@ -2,6 +2,33 @@
 to: <%= outputPath %>/<%= properties.name %>/nginx.conf
 force: true
 ---
+<%
+
+# var backends = [
+#   {
+#     properties: {
+#       name: 'lola'
+#     },
+#     environment: {
+#       port: 5000
+#     }
+#   }
+# ]
+
+# var blueprintName = 'hola'
+# var environment = {
+#   port: 3000
+# }
+
+# var properties = {
+#   name: 'coma'
+# }
+
+# var outputPath = ''
+
+# var deploymentStackPlugins = ['']
+
+-%>
 user  nginx;
 worker_processes  auto;
 error_log  /var/log/nginx/error.log warn;
@@ -33,7 +60,7 @@ server {
   <%_ if(backends.length > 0 ) { _%>
   <%_ backends.forEach((backend) => { _%>
   location /<%= backend.properties.name.toLowerCase() %>/ {
-    proxy_pass http://<%= backend.properties.name.toLowerCase() %>:<%= backend.environment.port %>/;
+    proxy_pass http://<% if (deploymentStackPlugins.includes('KubernetesManifest')) { -%><%= backend.properties.name.toLowerCase() + '.' + blueprintName.toLowerCase() + '.svc.cluster.local' %><% } else { -%><%= backend.properties.name.toLowerCase() %><% } -%>:<%= backend.environment.port %>/;
   }
   <%_ }); _%>
   <%_ } _%>
