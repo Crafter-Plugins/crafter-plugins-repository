@@ -4,29 +4,29 @@ force: true
 ---
 <%
 
-# var backends = [
-#   {
-#     properties: {
-#       name: 'lola'
-#     },
-#     environment: {
-#       port: 5000
-#     }
-#   }
-# ]
-
-# var blueprintName = 'hola'
-# var environment = {
-#   port: 3000
-# }
-
-# var properties = {
-#   name: 'coma'
-# }
-
-# var outputPath = ''
-
-# var deploymentStackPlugins = ['']
+// var backends = [
+//   {
+//     properties: {
+//       name: 'lola'
+//     },
+//     environment: {
+//       port: 5000
+//     }
+//   }
+// ]
+// 
+// var blueprintName = 'hola'
+// var environment = {
+//   port: 3000
+// }
+// 
+// var properties = {
+//   name: 'coma'
+// }
+// 
+// var outputPath = ''
+// 
+// var deploymentStackPlugins = ['KubernetesManifest']
 
 -%>
 user  nginx;
