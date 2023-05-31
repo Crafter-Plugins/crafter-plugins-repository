@@ -2,6 +2,23 @@
 to: kubernetes-service-<%= service.properties.name %>.yaml
 useRelativePath: true
 ---
+<%
+// 
+// var service = {
+//   properties: {
+//     name: 'hello'
+//   },
+//   environment: {
+//     port: 3000
+//   },
+//   metadata: {
+//     labels: ['backend']
+//   }
+// }
+// 
+// var blueprintName = 'hellobp'
+// 
+-%>
 
 apiVersion: v1
 kind: Service
@@ -18,3 +35,4 @@ spec:
     targetPort: <%= service.environment.port || service.environment.PORT %>
   selector:
     io.crafter/blueprint-name: <%= blueprintName.toLowerCase() %>
+  type: <%= service.metadata.labels.includes('frontend') ? 'LoadBalancer' : 'ClusterIP' %>
