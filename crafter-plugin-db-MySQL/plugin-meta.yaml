@@ -7,8 +7,9 @@ metadata:
   github_url: https://github.com
   labels:
     - database
-    - RDBMS
+    - rdbms
     - mysql
+    - backend
   icon_toolbar_filename: ./toolbar-icon.png
   icon_node_filename: ./node-icon.png
 
