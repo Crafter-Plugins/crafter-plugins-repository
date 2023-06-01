@@ -1,0 +1,32 @@
+apiVersion: plugins/v1
+kind: SystemComponent
+metadata:
+  name: kong
+  description: A basic Kong API Gateway. Serves as an API gateway for all neighbours whose plugins are marked with both the 'service_implementation' and 'backend' labels.
+  author: Souris Ash
+  github_url: https://github.com/tech-university-india/crafter-plugins-repository
+  labels:
+    - backend
+    - gateway
+    - no_dapr
+    - service_implementation
+  icon_toolbar_filename: ./toolbar_icon.png
+  icon_node_filename: ./node_icon.png
+spec:
+  environment:
+    - name: port
+      description: The port this gateway listens on.
+      type: integer
+      default: 80
+  
+  use_case:
+    cases:
+      - basic
+
+  validations:
+    connectable_to:
+      - has_tags:
+        - backend
+        - service_implementation
+        on_violation: error
+

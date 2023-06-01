@@ -1,0 +1,21 @@
+contextApiVersion: plugins/context/v1
+kind: ContextDefinition
+metadata:
+  name: KongContext
+spec:
+  contextObjects:  
+    services:
+      selector:
+        getNeighboursWithLabels:
+            labels:
+              - backend
+            includeFields:
+              - properties.name
+              - environment.port
+              - metadata.labels
+      type: Array<object>
+          
+    blueprintName:
+      selector:
+        getBlueprintName:
+      type: string

@@ -1,0 +1,17 @@
+---
+to: <%= properties.name %>/Dockerfile
+useRelativePath: true
+---
+
+FROM kong:3.3.0-alpine
+
+ENV KONG_DATABASE=off
+ENV KONG_PROXY_ACCESS_LOG=/dev/stdout
+ENV KONG_ADMIN_ACCESS_LOG=/dev/stdout
+ENV KONG_PROXY_ERROR_LOG=/dev/stderr
+ENV KONG_ADMIN_ERROR_LOG=/dev/stderr
+
+COPY config.yaml /kong-config/config.yaml
+
+ENTRYPOINT ["kong"]
+CMD ["start", "-c", "/kong-config/config.yaml"]

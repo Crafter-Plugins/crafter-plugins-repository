@@ -8,6 +8,7 @@ metadata:
     - backend
     - express
     - server_side
+    - service_implementation
   icon_toolbar_filename: ./toolbar_icon.png
   icon_node_filename: ./node_icon.png #path to node icon
 spec:

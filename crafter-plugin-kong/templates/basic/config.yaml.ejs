@@ -1,0 +1,57 @@
+---
+to: <%= properties.name %>/config.yaml
+useRelativePath: true
+---
+<% 
+
+// var properties = { name: 'kong-gtw' }
+// var services = [
+//   {
+//     properties: {
+//       name: 's1'
+//     },
+//     environment: {
+//       port: 8080
+//     }
+//   },
+//   {
+//     properties: {
+//       name: 's2'
+//     },
+//     environment: {
+//       port: 8081
+//     }
+//   }
+// ]
+
+// var blueprintName = 'bp1'
+// var deploymentStackPlugins = ['KubernetesManifest']
+
+-%>
+<% 
+
+function getUrlFor(service) {
+  const port = service.environment.PORT || service.environment.port
+  if (deploymentStackPlugins.includes('KubernetesManifest')) {
+    return `http://${service.properties.name.toLowerCase()}-service.${blueprintName.toLowerCase()}.svc.cluster.local:port`
+  }
+
+  return 'http://localhost:' + port
+}
+
+-%>
+
+_format_version: "3.0"
+_transform: true
+
+services:
+<% services.forEach((service) => { -%>
+<% if (service.metadata.includes('service_implementation')) { -%>
+- name: <%= service.properties.name.toLowerCase() %>
+  url: <%= getUrlFor(service)  %>
+  routes:
+  - name: default-route
+    paths:
+    - /<%= service.properties.name.toLowerCase() %>
+<% { -%>
+<% }) -%>
