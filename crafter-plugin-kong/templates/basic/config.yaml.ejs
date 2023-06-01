@@ -12,6 +12,9 @@ useRelativePath: true
 //     },
 //     environment: {
 //       port: 8080
+//     },
+//     metadata: {
+//       labels: ['backend', 'service_implementation']
 //     }
 //   },
 //   {
@@ -20,6 +23,9 @@ useRelativePath: true
 //     },
 //     environment: {
 //       port: 8081
+//     },
+//     metadata: {
+//       labels: ['backend', 'service_implementation']
 //     }
 //   }
 // ]
@@ -46,12 +52,12 @@ _transform: true
 
 services:
 <% services.forEach((service) => { -%>
-<% if (service.metadata.includes('service_implementation')) { -%>
+<% if (service.metadata.labels.includes('service_implementation')) { -%>
 - name: <%= service.properties.name.toLowerCase() %>
   url: <%= getUrlFor(service)  %>
   routes:
   - name: default-route
     paths:
     - /<%= service.properties.name.toLowerCase() %>
-<% { -%>
+<% } -%>
 <% }) -%>
