@@ -1,0 +1,41 @@
+apiVersion: plugins/v1
+kind: SystemComponent
+metadata:
+  name: mongodb-database
+  description: A non-relational database management system.
+  author: Varun Kumar
+  github_url: https://github.com
+  labels:
+    - database
+    - nosql
+    - mongodb
+  icon_toolbar_filename: ./toolbar-icon.png
+  icon_node_filename: ./node-icon.png
+
+spec:
+  environment:
+    - name: mongodb_db_name
+      description: Name of the database.
+      type: string
+      default: mongodb
+    
+    - name: port
+      description: Name of the port
+      type: integer
+      default: 27017
+
+    - name: mongodb_db_user
+      description: Name of the database user
+      type: string
+      default: mongodb
+    
+    - name: mongodb_db_password
+      description: password for the mongodb
+      type: string
+      default: null
+
+  validations:
+    - connectable_from:
+        - has_tags:
+          - backend
+      on_violation: error
