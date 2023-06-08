@@ -39,7 +39,7 @@ useRelativePath: true
 function getUrlFor(service) {
   const port = service.environment.PORT || service.environment.port
   if (deploymentStackPlugins.includes('KubernetesManifest')) {
-    return `http://${service.properties.name.toLowerCase()}-service.${blueprintName.toLowerCase()}.svc.cluster.local:port`
+    return `http://${service.properties.name.toLowerCase()}-service.${blueprintName.toLowerCase()}.svc.cluster.local:${port}`
   }
 
   return 'http://localhost:' + port
